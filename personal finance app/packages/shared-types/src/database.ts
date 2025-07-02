@@ -58,3 +58,34 @@ export const DEFAULT_CATEGORIES = [
 ] as const;
 
 export type Category = typeof DEFAULT_CATEGORIES[number];
+
+// Supabase Database type definition
+export interface Database {
+  public: {
+    Tables: {
+      users: {
+        Row: User;
+        Insert: Omit<User, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<User, 'id' | 'created_at' | 'updated_at'>>;
+      };
+      transactions: {
+        Row: Transaction;
+        Insert: Omit<Transaction, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<Transaction, 'id' | 'created_at' | 'updated_at'>>;
+      };
+      category_rules: {
+        Row: CategoryRule;
+        Insert: Omit<CategoryRule, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<CategoryRule, 'id' | 'created_at' | 'updated_at'>>;
+      };
+      user_settings: {
+        Row: UserSettings;
+        Insert: Omit<UserSettings, 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<UserSettings, 'user_id' | 'created_at' | 'updated_at'>>;
+      };
+    };
+    Views: {};
+    Functions: {};
+    Enums: {};
+  };
+}
